@@ -22,3 +22,6 @@ urlpatterns = [
     path('',include('home.urls'))
 
 ]
+admin.site.site_header = "Pradeep's"
+admin.site.site_title = "Pradeep's Admin Portal"
+admin.site.index_title = "Welcome to Pradeep's Learning Portal"
