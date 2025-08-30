@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse
 from datetime import datetime
-from home.models import Contact
+from home.models import Contact,Applicant
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -20,5 +20,13 @@ def contact(request):
     return render(request,'contact.html')
 
 
-def developerinfo(request):
-    return render(request,'developerinfo.html')
+def apply(request):
+    if request.method=='POST':
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        paddress=request.POST.get('paddress')
+        dob=request.POST.get('dob')
+        branch=request.POST.get('branch')
+        applicant=Applicant(name=name,email=email,paddress=paddress,dob=dob,branch=branch,date=datetime.today())
+        applicant.save()   
+    return render(request,'apply.html')
