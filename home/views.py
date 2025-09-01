@@ -6,8 +6,9 @@ def index(request):
     return render(request,'index.html')
     # return HttpResponse("this is home page")
 
-def about(request):
-    return render(request,'about.html')
+def appliedcontact(request):
+    contact=Contact.objects.all()
+    return render(request,'appliedcontact.html',{'contact':contact})
 
 def contact(request):
     if request.method== 'POST':

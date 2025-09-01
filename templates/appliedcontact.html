@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Applications{% endblock title %}
+
+{% block body %}
+
+
+<h1>Student List</h1>
+<table border='1' cellpadding='10'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>desc</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+  {% for c in contact %}
+  <tr>
+    <td>{{ c.name }}</td>
+    <td>{{ c.email }}</td>
+    <td>{{ c.phone }}</td>
+    <td>{{c.desc}}</td>
+    <td>{{c.date}}</td>
+  </tr>
+   <tr>
+  {% empty %}
+    <li>No students found.</li>
+   </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+
+{% endblock body %}
