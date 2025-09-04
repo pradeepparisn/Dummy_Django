@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}contact us{% endblock title %}
+
+{% block body %}
+{% comment %} <img src="/static/1.jpg" alt="DSATM enterence"> {% endcomment %}
+<h1 style="text-align: center;">Give Feedback</h1>
+<div class="container">
+    <form method='post' action='/feedback/'>
+        {% csrf_token %}
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name='name' placeholder="Enter your name">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name='email' placeholder="name@example.com">
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Contact No</label>
+        <input type="tel" class="form-control" id="phone" name='phone' placeholder="Phone No">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Your feedback</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name='desc' rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary" type='submit'>Submit</button>
+</form>
+<div style="text-align:center;margin-top:30px">
+<h5 style="text-align:center;background-color:green;color:white; padding:5px;border-radius:15px;display:inline-block;">Search for Your Submitted Feedback</h5>
+</div>
+<form method='post' action='/feedback/'>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="mail" class="form-label">Enter your email id</label>
+            <input type="email" class="form-control" id="mail" name='mail' placeholder="example@gmail.com">
+           <button style="margin-top:10px;" class='btn btn-primary' type='submit'>Search<button>
+          </div>
+      </form>
+
+ {% for c in feed %}
+  {% if mail == c.email%}
+ <table border='1' cellpadding='10'>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>desc</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+ 
+ 
+  <tr>
+    <td>{{ c.name }}</td>
+    <td>{{ c.email }}</td>
+    <td>{{ c.phone }}</td>
+    <td>{{c.desc}}</td>
+    <td>{{c.date}}</td>
+  </tr>
+   {% endif %}
+  {% endfor %}
+</tbody>
+</table>
+
+{% endblock body %}

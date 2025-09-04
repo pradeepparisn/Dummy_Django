@@ -2,9 +2,18 @@
 {% block title %}Applications{% endblock title %}
 
 {% block body %}
+<form method='post' action='/appliedcontact/'>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="mail" class="form-label">Enter your email id</label>
+            <input type="email" class="form-control" id="mail" name='mail' placeholder="example@gmail.com">
+           <button class='btn btn-primary' type='submit'>Search<button>
+          </div>
+      </form>
 
-<h1>Student List</h1>
-<table border='1' cellpadding='10'>
+ {% for c in contact %}
+  {% if mail == c.email%}
+ <table border='1' cellpadding='10'>
     <thead>
         <tr>
             <th>Name</th>
@@ -16,7 +25,8 @@
     </thead>
     <tbody>
 
-  {% for c in contact %}
+ 
+ 
   <tr>
     <td>{{ c.name }}</td>
     <td>{{ c.email }}</td>
@@ -24,10 +34,7 @@
     <td>{{c.desc}}</td>
     <td>{{c.date}}</td>
   </tr>
-   <tr>
-  {% empty %}
-    <li>No students found.</li>
-   </tr>
+   {% endif %}
   {% endfor %}
 </tbody>
 </table>
